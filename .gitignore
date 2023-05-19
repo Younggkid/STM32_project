@@ -78,6 +78,6 @@ Examples/
 !*.h
 !*.c
 !*.ioc
-!*.axf
+*.axf
 !*.bin
-!*.hex
+*.hex
