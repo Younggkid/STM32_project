@@ -109,7 +109,7 @@ void ESP8266_ApTcpServer_ConfigTest(void)
   * @param  ÎÞ
   * @retval ÎÞ
   */
-void ESP8266_CheckRecv_SendDataTest(void)
+void ESP8266_CheckRecv_SendDataTest(int32_t heart_enable,int32_t heart_value,int32_t spo_enable,int32_t spo_value)
 {
   
   if ( strEsp8266_Fram_Record .InfBit .FramFinishFlag )
@@ -120,6 +120,7 @@ void ESP8266_CheckRecv_SendDataTest(void)
     printf("ucCh =%s\n",strEsp8266_Fram_Record .Data_RX_BUF);
 //    printf ( "\r\n%s\r\n", strEsp8266_Fram_Record .Data_RX_BUF );//
     
+		
     if ( ( pCh = strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "CMD_LED_" ) ) != 0 )    //LED¿ØÖÆ
     {
       cCh = * ( pCh + 8 );
@@ -186,7 +187,7 @@ void ESP8266_CheckRecv_SendDataTest(void)
       
     }
     
-    else if ( ( pCh = strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "CMD_BUZZER_" ) ) != 0 )  //·äÃùÆ÷¿ØÖÆ
+    else  if ( ( pCh = strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "CMD_BUZZER_" ) ) != 0 )  //·äÃùÆ÷¿ØÖÆ
     {
       cCh = * ( pCh + 11 );
       
@@ -226,8 +227,9 @@ void ESP8266_CheckRecv_SendDataTest(void)
                 ucLed1Status, ucLed2Status, ucLed3Status, DHT11_Data .temp_int, 
                 DHT11_Data .temp_deci, DHT11_Data .humi_int, DHT11_Data .humi_deci,
                 ucBuzzerStatus );
-			printf("CMD_LED_%d_%d_%d_ENDLED_DHT11_%d.%d_%d.%d_ENDDHT11_BUZZER_%d_ENDBUZZER_END",ucLed1Status, ucLed2Status, ucLed3Status, DHT11_Data .temp_int, 
+			printf("DHT11_%d.%d_%d.%d_ENDDHT11_MAX30_%d_%d_%d_%d_ENDMAX30_BUZZER_%d_ENDBUZZER_END",DHT11_Data .temp_int, 
                 DHT11_Data .temp_deci, DHT11_Data .humi_int, DHT11_Data .humi_deci,
+			heart_enable,heart_value,spo_enable,spo_value,
                 ucBuzzerStatus);
     }
     

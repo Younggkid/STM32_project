@@ -32,7 +32,7 @@
 /********************************** ²âÊÔº¯ÊıÉùÃ÷ ***************************************/
 void ESP8266_StaTcpServer_ConfigTest(void);
 void ESP8266_ApTcpServer_ConfigTest(void);
-void ESP8266_CheckRecv_SendDataTest(void);
+void ESP8266_CheckRecv_SendDataTest(int32_t heart_enable,int32_t heart_value,int32_t spo_enable,int32_t spo_value);
 
 #endif
 

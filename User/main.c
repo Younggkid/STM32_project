@@ -53,6 +53,14 @@ int32_t hrTimeout = 0;
 
 u8 Auto = 1; //决定是否自动开关灯
 u8 Blood = 0; //决定是否测量血氧
+/*struct heart_and_spo
+{
+	int32_t heart_enable;
+	int32_t heart_value;
+	int32_t spo_enable;
+	int32_t spo_value;
+	
+};*/
 
 
  int main(void)
@@ -163,7 +171,8 @@ u8 Blood = 0; //决定是否测量血氧
         int i;
         un_min = 0x3FFFF;
         un_max = 0;
-			ESP8266_CheckRecv_SendDataTest(); // ESP8266 处理并发送数据
+			  
+			  
 			
 				/*调用DHT11_Read_TempAndHumidity读取温湿度，若成功则输出该信息*/
 			if( DHT11_Read_TempAndHumidity ( & DHT11_Data ) == SUCCESS)
@@ -254,6 +263,11 @@ u8 Blood = 0; //决定是否测量血氧
 				}
 					delay_ms(200);
 			
+				
+
+	    printf("HRvalid=%i, ", ch_hr_valid);
+			printf("SpO2=%i, ", n_sp02);
+			ESP8266_CheckRecv_SendDataTest(ch_hr_valid,n_heart_rate,ch_spo2_valid,n_sp02); // ESP8266 处理并发送数据
 			/*语音模块，识别命令，做出响应*/
 			switch(nAsrStatus)
 			{
@@ -295,6 +309,7 @@ u8 Blood = 0; //决定是否测量血氧
 **********************************************************/
 void User_Modification(u8 dat)
 {
+	printf("开始");
 	if(dat ==0)
 	{
 		flag=1;
