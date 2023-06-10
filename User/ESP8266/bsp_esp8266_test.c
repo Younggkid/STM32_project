@@ -223,10 +223,14 @@ void ESP8266_CheckRecv_SendDataTest(int32_t heart_enable,int32_t heart_value,int
     else if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "CMD_READ_ALL_END" ) != 0 )     //¶ÁÈ¡×´Ì¬Êý¾Ý
     {
       DHT11_Read_TempAndHumidity ( & DHT11_Data );
-      sprintf ( cStr, "CMD_LED_%d_%d_%d_ENDLED_DHT11_%d.%d_%d.%d_ENDDHT11_BUZZER_%d_ENDBUZZER_END", 
-                ucLed1Status, ucLed2Status, ucLed3Status, DHT11_Data .temp_int, 
+      //sprintf ( cStr, "CMD_LED_%d_%d_%d_ENDLED_DHT11_%d.%d_%d.%d_ENDDHT11_BUZZER_%d_ENDBUZZER_END", 
+             //   ucLed1Status, ucLed2Status, ucLed3Status, DHT11_Data .temp_int, 
+             //   DHT11_Data .temp_deci, DHT11_Data .humi_int, DHT11_Data .humi_deci,
+             //   ucBuzzerStatus );
+			sprintf (cStr,"DHT11_%d.%d_%d.%d_ENDDHT11_MAX30_%d_%d_%d_%d_ENDMAX30_BUZZER_%d_ENDBUZZER_END",DHT11_Data .temp_int, 
                 DHT11_Data .temp_deci, DHT11_Data .humi_int, DHT11_Data .humi_deci,
-                ucBuzzerStatus );
+			heart_enable,heart_value,spo_enable,spo_value,
+                ucBuzzerStatus);
 			printf("DHT11_%d.%d_%d.%d_ENDDHT11_MAX30_%d_%d_%d_%d_ENDMAX30_BUZZER_%d_ENDBUZZER_END",DHT11_Data .temp_int, 
                 DHT11_Data .temp_deci, DHT11_Data .humi_int, DHT11_Data .humi_deci,
 			heart_enable,heart_value,spo_enable,spo_value,
